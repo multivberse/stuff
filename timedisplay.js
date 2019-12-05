@@ -38,7 +38,7 @@ function timeDisplayShort(time, small, places) {
 		}
 		return (time * 100).toFixed(time < 0.1 ? places : places-1) + " cs"
 	}
-	if (time < 60) return time.toFixed(time < 10 ? places : places-1) + " s" + (rep ? "" : "econds")
+	if (time < 60) return time.toFixed(time < 10 ? places : places-1) + " s" + (small ? "" : "econds")
 	if (time < 3600) return Math.floor(time/60) + ":" + preformat(Math.floor(time%60))
 	if (time < 86400) return Math.floor(time/3600) + ":" + preformat(Math.floor((time/60)%60)) + ":" + preformat(Math.floor(time%60))
 	if (time < 31556952 && small) return Math.floor(time/86400) + 'd ' + ((time/3600)%24).toFixed(1) + "hr"
