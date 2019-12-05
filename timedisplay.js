@@ -17,7 +17,7 @@ function showPlural(time, unit, comma) {
    if (time == 1) {return time + unit + (comma ? ", " : " ")} else {return time + unit + (comma ? "s, " : "s ")}
 }
 
-let small = ['','m','μ','n','p','f','a','z','y']
+let prefix = ['','m','μ','n','p','f','a','z','y','x','w','v']
 function preformat(int) {
   if (int.toString().length == 1) return "0"+int
   else return int
@@ -31,10 +31,10 @@ function timeDisplayShort(time, small, places) {
 	time = time / 1
 	if (small && time < 1) {
                 if (time < Number.MIN_VALUE) return time.toPrecision(4) + "s"
-		if (time < 1e-24) return time.toPrecision(4)+"s"
+		if (time < 1e-33) return time.toPrecision(4)+"s"
 		if (time < 0.01) {
 			var log = Math.ceil(-Math.log10(time))
-			return (time * Math.pow(1e3, Math.ceil(log/3))).toFixed(Math.max(places+(log-1)%3-2, 0)) + " "+small[Math.ceil(log/3)]+"s"
+			return (time * Math.pow(1e3, Math.ceil(log/3))).toFixed(Math.max(places+(log-1)%3-2, 0)) + " "+prefix[Math.ceil(log/3)]+"s"
 		}
 		return (time * 100).toFixed(time < 0.1 ? places : places-1) + " cs"
 	}
